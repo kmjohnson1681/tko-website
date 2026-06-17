@@ -63,6 +63,17 @@
       transition: background 0.2s !important;
     }
     .nav-btn:hover { background: var(--gold2) !important; color: var(--navy) !important; }
+    .nav-mobile-cta {
+      display: none;
+      background: var(--gold); color: var(--navy);
+      padding: 0.45rem 1rem; border-radius: 4px;
+      font-family: 'Inter', sans-serif;
+      font-weight: 800; font-size: 0.75rem;
+      text-transform: uppercase; letter-spacing: 0.06em;
+      border: none; cursor: pointer;
+      transition: background 0.2s;
+    }
+    .nav-mobile-cta:hover { background: var(--gold2); }
 
     /* ─── HERO ─── */
     .hero {
@@ -112,7 +123,7 @@
     }
     .hero h1 {
       font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(4.5rem, 9vw, 9rem);
+      font-size: clamp(2.75rem, 9vw, 9rem);
       line-height: 0.92; letter-spacing: 0.01em;
       color: var(--white);
       margin-bottom: 0.15em;
@@ -655,20 +666,45 @@
       .process-divider { display: none; }
       .proc-step { padding: 0; }
       .cta-inner { flex-direction: column; align-items: flex-start; }
+      .cta-right { width: 100%; }
+      .btn-navy, .btn-navy-outline { width: 100%; justify-content: center; }
       .footer-top { flex-direction: column; }
+      .footer-links { gap: 2rem; }
     }
     @media (max-width: 768px) {
       nav { padding: 0 1.25rem; }
       .nav-links { display: none; }
-      .section { padding: 5rem 1.5rem; }
+      .nav-mobile-cta { display: block; }
+      .section { padding: 4rem 1.25rem; }
       .hero-inner { grid-template-columns: 1fr; }
-      .hero-left { padding: 6rem 1.5rem 4rem; }
-      .prod-copy { padding: 3rem 1.5rem; }
-      .rs-side { padding: 3rem 1.5rem; }
-      .comp-section { padding: 5rem 1.5rem; }
-      .cta-section { padding: 5rem 1.5rem; }
-      footer { padding: 3rem 1.5rem 2rem; }
-      .pullquote-section { padding: 4rem 1.5rem; }
+      .hero-left { padding: 5.5rem 1.25rem 3rem; }
+      h2.display { font-size: clamp(2.25rem, 8vw, 5.5rem); }
+      .pq-text { font-size: clamp(1.75rem, 6vw, 3.75rem); }
+      .prod-copy { padding: 2.5rem 1.25rem; }
+      .rs-side { padding: 2.5rem 1.25rem; }
+      .rs-big-num { font-size: 4rem; }
+      .comp-section { padding: 4rem 1.25rem; }
+      .cta-section { padding: 4rem 1.25rem; }
+      .cta-section::before { font-size: 40vw; }
+      .cta-left h2 { font-size: clamp(2.5rem, 10vw, 6rem); }
+      footer { padding: 3rem 1.25rem 2rem; }
+      .pullquote-section { padding: 3.5rem 1.25rem; }
+      .founders-section { padding: 4rem 1.25rem; }
+      .sr-item { flex: 1 1 100%; }
+      .stat-ribbon-inner { padding: 0 1.25rem; }
+      .ticker-item { padding: 0 1.5rem; font-size: 0.65rem; }
+      .hero-eyebrow-text { font-size: 0.62rem; }
+      .hero-sub { font-size: 0.95rem; }
+      .btn-gold, .btn-outline { padding: 0.8rem 1.5rem; font-size: 0.85rem; }
+    }
+    @media (max-width: 480px) {
+      .hero-left { padding: 5rem 1.25rem 2.5rem; }
+      .modal { padding: 1.75rem 1.25rem; }
+      .form-row { grid-template-columns: 1fr; gap: 0; }
+      .hero-actions { flex-direction: column; align-items: flex-start; }
+      .btn-gold, .btn-outline { width: 100%; justify-content: center; }
+      .sr-item { padding: 1rem 0.75rem; }
+      .pq-mark { font-size: 5rem; }
     }
   </style>
 </head>
@@ -739,6 +775,7 @@
       <li><a href="#team">Team</a></li>
       <li><a href="#" class="nav-btn" onclick="openModal(); return false;">Request Demo</a></li>
     </ul>
+    <button class="nav-mobile-cta" onclick="openModal()">Request Demo</button>
   </div>
 </nav>
 
