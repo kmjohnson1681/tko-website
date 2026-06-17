@@ -1,0 +1,1223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>TKO Solutions Group, LLC — Sports Contract Intelligence for Agents & Attorneys</title>
+  <meta name="description" content="TKO Solutions Group, LLC gives sports agents instant NIL and NFL contract analysis — compliance checks, market benchmarking, and two professional reports in under 60 seconds."/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Bebas+Neue&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:   #0B1220;
+      --navy2:  #0F1A2E;
+      --blue:   #1D4ED8;
+      --blue2:  #2563EB;
+      --gold:   #D97706;
+      --gold2:  #F59E0B;
+      --white:  #FFFFFF;
+      --off:    #F7F8FA;
+      --muted:  #64748B;
+      --border: rgba(0,0,0,0.08);
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--white);
+      color: var(--navy);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 999;
+      height: 64px;
+      display: flex; align-items: center;
+      padding: 0 3rem;
+      background: rgba(11,18,32,0.97);
+      backdrop-filter: blur(16px);
+    }
+    .nav-inner {
+      width: 100%; max-width: 1300px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.75rem; letter-spacing: 0.04em;
+      text-decoration: none; color: var(--white);
+      display: flex; align-items: center; gap: 0.1em;
+    }
+    .nav-logo .tko { color: var(--gold); }
+    .nav-logo .sg  { color: rgba(255,255,255,0.65); font-size: 1.4rem; letter-spacing: 0.04em; margin-left: 0.3rem; }
+    .nav-links { display: flex; align-items: center; gap: 2.25rem; list-style: none; }
+    .nav-links a { color: rgba(255,255,255,0.55); text-decoration: none; font-size: 0.82rem; font-weight: 500; letter-spacing: 0.04em; text-transform: uppercase; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--white); }
+    .nav-btn {
+      background: var(--gold); color: var(--navy) !important;
+      padding: 0.5rem 1.4rem !important; border-radius: 4px;
+      font-weight: 700 !important; text-transform: uppercase !important;
+      letter-spacing: 0.06em !important; font-size: 0.78rem !important;
+      transition: background 0.2s !important;
+    }
+    .nav-btn:hover { background: var(--gold2) !important; color: var(--navy) !important; }
+
+    /* ─── HERO ─── */
+    .hero {
+      background: var(--navy);
+      padding: 0;
+      display: flex; flex-direction: column; justify-content: center;
+      position: relative; overflow: hidden;
+    }
+    /* dot matrix texture */
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image: radial-gradient(circle, rgba(255,255,255,0.07) 1px, transparent 1px);
+      background-size: 28px 28px;
+      pointer-events: none;
+    }
+    /* diagonal gold accent */
+    .hero::after {
+      content: '';
+      position: absolute;
+      top: -20%; right: -10%;
+      width: 55%; height: 140%;
+      background: linear-gradient(160deg, rgba(217,119,6,0.07) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .hero-inner {
+      position: relative; z-index: 2;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      align-items: stretch;
+    }
+    .hero-left {
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 6rem 4rem 5rem 8%;
+    }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 0.75rem;
+      margin-bottom: 1.25rem;
+    }
+    .hero-eyebrow-line { width: 40px; height: 2px; background: var(--gold); }
+    .hero-eyebrow-text {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem; font-weight: 600;
+      color: var(--gold); letter-spacing: 0.16em; text-transform: uppercase;
+    }
+    .hero h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(4.5rem, 9vw, 9rem);
+      line-height: 0.92; letter-spacing: 0.01em;
+      color: var(--white);
+      margin-bottom: 0.15em;
+    }
+    .hero h1 .gold { color: var(--gold); }
+    .hero h1 .outline {
+      -webkit-text-stroke: 2px rgba(255,255,255,0.25);
+      color: transparent;
+    }
+    .hero-sub {
+      max-width: 580px;
+      margin-top: 1.25rem; margin-bottom: 1.75rem;
+      color: rgba(255,255,255,0.55);
+      font-size: 1rem; line-height: 1.8; font-weight: 400;
+    }
+    .hero-sub strong { color: rgba(255,255,255,0.85); font-weight: 600; }
+    .hero-actions { display: flex; align-items: center; gap: 1.25rem; flex-wrap: wrap; }
+    .btn-gold {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: var(--gold); color: var(--navy);
+      padding: 0.9rem 2.25rem; border-radius: 4px;
+      text-decoration: none; font-weight: 800; font-size: 0.9rem;
+      text-transform: uppercase; letter-spacing: 0.06em;
+      border: none; cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .btn-gold:hover { background: var(--gold2); transform: translateY(-2px); }
+    .btn-outline {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: transparent; color: rgba(255,255,255,0.65);
+      padding: 0.9rem 2.25rem; border-radius: 4px;
+      text-decoration: none; font-weight: 600; font-size: 0.9rem;
+      text-transform: uppercase; letter-spacing: 0.06em;
+      border: 1px solid rgba(255,255,255,0.15);
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .btn-outline:hover { border-color: rgba(255,255,255,0.4); color: white; }
+
+    /* redline contract visual */
+    .hero-contract {
+      display: flex;
+      align-items: center; justify-content: center;
+      padding: 5rem 8% 5rem 4rem;
+      background: rgba(0,0,0,0.18);
+      border-left: 1px solid rgba(255,255,255,0.05);
+      z-index: 2;
+    }
+    @media (max-width:1000px) { .hero-contract { display: none; } }
+    .contract-doc {
+      background: white; border-radius: 8px;
+      box-shadow: 0 24px 60px rgba(0,0,0,0.4);
+      overflow: hidden; font-family: 'JetBrains Mono', monospace;
+      width: 100%; max-width: 480px;
+    }
+    .contract-header {
+      background: var(--navy2); padding: 0.75rem 1.1rem;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .ch-title { font-size: 0.65rem; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 0.1em; }
+    .ch-status { display: flex; align-items: center; gap: 0.4rem; font-size: 0.62rem; color: #10B981; font-weight: 600; }
+    .ch-dot { width: 5px; height: 5px; background: #10B981; border-radius: 50%; animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+    .contract-body { padding: 1.1rem; }
+    .cl { display: flex; font-size: 0.67rem; line-height: 1.9; }
+    .cl-num { color: rgba(0,0,0,0.2); min-width: 24px; flex-shrink:0; }
+    .cl-code { color: #334155; }
+    .cl-red { background: rgba(239,68,68,0.08); text-decoration: line-through; color: #94A3B8; }
+    .cl-ins { background: rgba(16,185,129,0.08); color: #059669; font-weight: 600; }
+    .cl-warn { background: rgba(217,119,6,0.1); color: #B45309; }
+    .contract-verdict {
+      background: var(--navy); margin: 0.5rem; border-radius: 6px;
+      padding: 0.9rem; display: flex; align-items: center; justify-content: space-between;
+    }
+    .cv-left { font-size: 0.6rem; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 0.1em; }
+    .cv-val { font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; color: var(--gold); letter-spacing: 0.05em; }
+    .cv-sub { font-size: 0.58rem; color: rgba(255,255,255,0.35); margin-top: 0.1rem; }
+    .cv-badge { background: rgba(16,185,129,0.15); border: 1px solid rgba(16,185,129,0.3); border-radius: 4px; padding: 0.35rem 0.6rem; font-size: 0.6rem; font-weight: 700; color: #10B981; text-align: center; }
+
+    /* ─── TICKER ─── */
+    .ticker {
+      background: var(--gold);
+      padding: 0.65rem 0; overflow: hidden; white-space: nowrap;
+    }
+    .ticker-track {
+      display: inline-flex; gap: 0;
+      animation: ticker 35s linear infinite;
+    }
+    .ticker-track:hover { animation-play-state: paused; }
+    @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    .ticker-item {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      padding: 0 2.5rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem; font-weight: 700;
+      color: var(--navy); text-transform: uppercase; letter-spacing: 0.08em;
+    }
+    .ticker-dot { width: 4px; height: 4px; background: var(--navy); border-radius: 50%; opacity: 0.4; }
+
+    /* ─── SECTION BASE ─── */
+    .section { padding: 7rem 3rem; }
+    .section-inner { max-width: 1300px; margin: 0 auto; }
+    .s-label {
+      display: flex; align-items: center; gap: 0.75rem;
+      margin-bottom: 1.25rem;
+    }
+    .s-label-line { width: 32px; height: 2px; background: var(--blue2); }
+    .s-label-text {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem; font-weight: 600; color: var(--blue2);
+      text-transform: uppercase; letter-spacing: 0.14em;
+    }
+    .s-label-line.gold { background: var(--gold); }
+    .s-label-text.gold { color: var(--gold); }
+    .s-label-line.white { background: rgba(255,255,255,0.4); }
+    .s-label-text.white { color: rgba(255,255,255,0.5); }
+
+    h2.display {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(3rem, 5.5vw, 5.5rem);
+      line-height: 0.92; letter-spacing: 0.01em;
+      color: var(--navy); margin-bottom: 0.75rem;
+    }
+    h2.display .gold { color: var(--gold); }
+    h2.display .blue { color: var(--blue2); }
+    h2.display .white { color: var(--white); }
+    h2.display .dim { opacity: 0.2; }
+    .lead {
+      color: var(--muted); font-size: 1rem; line-height: 1.8;
+      max-width: 560px; margin-bottom: 3.5rem;
+    }
+
+    /* ─── STAT RIBBON ─── */
+    .stat-ribbon {
+      background: var(--navy2);
+      border-top: 1px solid rgba(255,255,255,0.05);
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    .stat-ribbon-inner {
+      max-width: 1300px; margin: 0 auto;
+      display: flex; align-items: center;
+      padding: 0 8%;
+    }
+    .sr-item {
+      display: flex; align-items: center; gap: 1.1rem;
+      padding: 1.5rem 2.5rem;
+      flex: 1;
+      border-right: 1px solid rgba(255,255,255,0.06);
+    }
+    .sr-item:first-child { padding-left: 0; }
+    .sr-item:last-child { border-right: none; padding-right: 0; }
+    .sr-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2.4rem; line-height: 1; color: var(--white);
+      white-space: nowrap; flex-shrink: 0;
+    }
+    .sr-num .u { color: var(--gold); }
+    .sr-label { font-size: 0.72rem; color: rgba(255,255,255,0.38); line-height: 1.45; font-weight: 500; }
+
+    /* ─── PRODUCT ROWS (alternating) ─── */
+    .prod-row {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 0; align-items: stretch;
+    }
+    .prod-row.flip { direction: rtl; }
+    .prod-row.flip > * { direction: ltr; }
+    .prod-copy {
+      padding: 5rem 4rem;
+      display: flex; flex-direction: column; justify-content: center;
+    }
+    .prod-copy.on-navy { background: var(--navy); }
+    .prod-copy.on-white { background: var(--white); }
+    .prod-number {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 8rem; line-height: 1; color: rgba(255,255,255,0.05);
+      position: absolute; top: 1rem; right: 2rem;
+      pointer-events: none; user-select: none;
+    }
+    .prod-copy { position: relative; overflow: hidden; }
+    .prod-tag {
+      display: inline-block; margin-bottom: 1.5rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem; font-weight: 700; letter-spacing: 0.14em;
+      text-transform: uppercase; padding: 0.35rem 0.9rem; border-radius: 2px;
+    }
+    .pt-gold { background: rgba(217,119,6,0.15); color: var(--gold); border: 1px solid rgba(217,119,6,0.3); }
+    .pt-blue { background: rgba(37,99,235,0.12); color: #93C5FD; border: 1px solid rgba(37,99,235,0.25); }
+    .prod-copy h3 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.4rem, 3.5vw, 3.5rem);
+      line-height: 0.95; letter-spacing: 0.02em; margin-bottom: 1.25rem;
+    }
+    .prod-copy.on-navy h3 { color: var(--white); }
+    .prod-copy.on-white h3 { color: var(--navy); }
+    .prod-desc {
+      font-size: 0.925rem; line-height: 1.8; margin-bottom: 2rem;
+    }
+    .prod-copy.on-navy .prod-desc { color: rgba(255,255,255,0.55); }
+    .prod-copy.on-white .prod-desc { color: var(--muted); }
+    .feature-list { display: flex; flex-direction: column; gap: 0.6rem; }
+    .fi {
+      display: flex; align-items: flex-start; gap: 0.75rem;
+      font-size: 0.85rem; line-height: 1.5;
+    }
+    .prod-copy.on-navy .fi { color: rgba(255,255,255,0.65); }
+    .prod-copy.on-white .fi { color: var(--muted); }
+    .fi-icon { flex-shrink: 0; margin-top: 0.1em; }
+    .prod-visual {
+      min-height: 480px; position: relative; overflow: hidden;
+    }
+    .prod-visual.bg-blue { background: linear-gradient(135deg, #1E3A8A 0%, #1D4ED8 100%); }
+    .prod-visual.bg-gold { background: linear-gradient(135deg, #92400E 0%, #D97706 100%); }
+    .prod-visual.bg-dark { background: linear-gradient(135deg, #060D1A 0%, #0F1A2E 100%); }
+    .prod-visual.bg-slate { background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%); }
+    .pv-center {
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      padding: 2.5rem;
+    }
+
+    /* NIL analysis panel */
+    .nil-panel {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 8px; width: 100%; max-width: 320px;
+      overflow: hidden; backdrop-filter: blur(10px);
+    }
+    .np-bar {
+      background: rgba(255,255,255,0.05);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      padding: 0.7rem 1rem;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .np-title { font-family: 'JetBrains Mono', monospace; font-size: 0.62rem; color: rgba(255,255,255,0.35); text-transform: uppercase; letter-spacing: 0.1em; }
+    .np-live { display: flex; align-items: center; gap: 0.35rem; font-size: 0.6rem; color: #10B981; font-weight: 700; }
+    .np-dot { width: 5px; height: 5px; background: #10B981; border-radius: 50%; animation: pulse 2s infinite; }
+    .np-body { padding: 1.1rem; }
+    .np-line {
+      display: flex; align-items: flex-start; gap: 0.5rem;
+      font-family: 'JetBrains Mono', monospace; font-size: 0.64rem; line-height: 1.7;
+      margin-bottom: 0.1rem;
+    }
+    .np-check { color: #10B981; flex-shrink: 0; }
+    .np-warn  { color: #F59E0B; flex-shrink: 0; }
+    .np-flag  { color: #EF4444; flex-shrink: 0; }
+    .np-text  { color: rgba(255,255,255,0.65); }
+    .np-text strong { color: rgba(255,255,255,0.9); }
+    .np-divider { border: none; border-top: 1px solid rgba(255,255,255,0.07); margin: 0.75rem 0; }
+    .np-result {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0.75rem; background: rgba(217,119,6,0.1);
+      border: 1px solid rgba(217,119,6,0.2); border-radius: 5px; margin-top: 0.5rem;
+    }
+    .npr-label { font-size: 0.58rem; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 0.1em; font-family: 'JetBrains Mono', monospace; }
+    .npr-val { font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; color: var(--gold2); letter-spacing: 0.05em; }
+
+    /* NFL panel */
+    .nfl-panel {
+      width: 100%; max-width: 300px;
+    }
+    .nfl-row {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0.8rem 1rem; border-bottom: 1px solid rgba(255,255,255,0.06);
+      font-size: 0.78rem;
+    }
+    .nfl-label { color: rgba(255,255,255,0.45); font-size: 0.72rem; }
+    .nfl-val { font-weight: 700; color: white; font-family: 'JetBrains Mono', monospace; }
+    .nfl-val.green { color: #10B981; }
+    .nfl-val.gold { color: var(--gold2); }
+    .nfl-val.red { color: #EF4444; }
+    .nfl-header { padding: 0.9rem 1rem; border-bottom: 1px solid rgba(255,255,255,0.08); }
+    .nfl-header-title { font-family: 'Bebas Neue', sans-serif; font-size: 1.1rem; color: white; letter-spacing: 0.05em; }
+    .nfl-header-sub { font-size: 0.62rem; color: rgba(255,255,255,0.35); font-family: 'JetBrains Mono', monospace; margin-top: 0.15rem; }
+
+    /* ─── PROCESS (replaces 3-box steps) ─── */
+    .process-section { background: var(--off); }
+    .process-grid {
+      display: grid; grid-template-columns: 1fr 2px 1fr 2px 1fr; gap: 0; align-items: start;
+      margin-top: 4rem;
+    }
+    .process-divider { background: var(--border); align-self: stretch; margin-top: 3.5rem; }
+    .proc-step { padding: 0 2.5rem; }
+    .proc-step:first-child { padding-left: 0; }
+    .proc-step:last-child { padding-right: 0; }
+    .proc-n {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 4rem; color: var(--navy); opacity: 0.1;
+      line-height: 1; margin-bottom: 0.25rem;
+    }
+    .proc-label {
+      font-family: 'JetBrains Mono', monospace; font-size: 0.62rem; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.12em; color: var(--blue2); margin-bottom: 0.75rem;
+    }
+    .proc-h { font-size: 1.2rem; font-weight: 800; color: var(--navy); margin-bottom: 0.6rem; letter-spacing: -0.02em; }
+    .proc-p { font-size: 0.875rem; color: var(--muted); line-height: 1.7; }
+
+    /* ─── TWO REPORTS — split screen ─── */
+    .reports-split { display: grid; grid-template-columns: 1fr 1fr; min-height: 520px; }
+    .rs-side {
+      padding: 5rem 4rem;
+      display: flex; flex-direction: column; justify-content: center;
+    }
+    .rs-left { background: var(--navy); }
+    .rs-right { background: var(--off); }
+    .rs-big-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 7rem; line-height: 1; letter-spacing: 0.02em;
+      opacity: 0.06; position: absolute; bottom: 2rem; right: 2rem;
+      pointer-events: none;
+    }
+    .rs-side { position: relative; overflow: hidden; }
+    .rs-tag {
+      display: inline-block; margin-bottom: 1.25rem;
+      font-family: 'JetBrains Mono', monospace; font-size: 0.62rem; font-weight: 700;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      padding: 0.3rem 0.8rem; border-radius: 2px;
+    }
+    .rst-blue { background: rgba(37,99,235,0.15); color: #93C5FD; border: 1px solid rgba(37,99,235,0.25); }
+    .rst-gold { background: rgba(217,119,6,0.12); color: var(--gold); border: 1px solid rgba(217,119,6,0.25); }
+    .rs-left h3 { font-family: 'Bebas Neue', sans-serif; font-size: 2.5rem; color: white; letter-spacing: 0.02em; line-height: 0.95; margin-bottom: 1rem; }
+    .rs-right h3 { font-family: 'Bebas Neue', sans-serif; font-size: 2.5rem; color: var(--navy); letter-spacing: 0.02em; line-height: 0.95; margin-bottom: 1rem; }
+    .rs-left p { color: rgba(255,255,255,0.5); font-size: 0.9rem; line-height: 1.75; margin-bottom: 1.5rem; }
+    .rs-right p { color: var(--muted); font-size: 0.9rem; line-height: 1.75; margin-bottom: 1.5rem; }
+    .rs-list { display: flex; flex-direction: column; gap: 0.5rem; }
+    .rs-item { display: flex; gap: 0.6rem; font-size: 0.82rem; align-items: flex-start; }
+    .rs-left .rs-item { color: rgba(255,255,255,0.55); }
+    .rs-right .rs-item { color: var(--muted); }
+    .rs-item::before { content: '—'; flex-shrink: 0; }
+    .rs-left .rs-item::before { color: var(--gold); }
+    .rs-right .rs-item::before { color: var(--blue2); }
+    .rs-big-num.left { color: white; }
+    .rs-big-num.right { color: var(--navy); }
+
+    /* ─── PULLQUOTE ─── */
+    .pullquote-section { background: var(--blue2); padding: 5rem 3rem; text-align: center; }
+    .pullquote-inner { max-width: 900px; margin: 0 auto; }
+    .pq-mark { font-family: 'Bebas Neue', sans-serif; font-size: 8rem; color: rgba(255,255,255,0.1); line-height: 0.5; display: block; margin-bottom: 0.5rem; }
+    .pq-text { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2rem, 4vw, 3.75rem); color: white; line-height: 1.05; letter-spacing: 0.01em; margin-bottom: 1.5rem; }
+    .pq-text .gold { color: var(--gold2); }
+    .pq-sub { color: rgba(255,255,255,0.6); font-size: 0.9rem; line-height: 1.7; }
+
+    /* ─── COMPLIANCE ─── */
+    .comp-section { background: var(--navy); padding: 7rem 3rem; }
+    .comp-inner { max-width: 1300px; margin: 0 auto; }
+    .comp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; margin-top: 4rem; }
+    .comp-block {
+      border-top: 2px solid rgba(255,255,255,0.08); padding-top: 2rem;
+    }
+    .cb-eyebrow { font-family: 'JetBrains Mono', monospace; font-size: 0.62rem; font-weight: 600; color: var(--gold); text-transform: uppercase; letter-spacing: 0.14em; margin-bottom: 0.875rem; }
+    .cb-title { font-size: 1.05rem; font-weight: 800; color: white; margin-bottom: 1rem; letter-spacing: -0.01em; }
+    .cb-list { display: flex; flex-direction: column; gap: 0.55rem; }
+    .cb-item { display: flex; gap: 0.6rem; font-size: 0.83rem; color: rgba(255,255,255,0.5); line-height: 1.55; align-items: flex-start; }
+    .cb-item .arrow { color: var(--gold); flex-shrink: 0; font-size: 0.75rem; margin-top: 0.15em; }
+    .state-pills { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.25rem; }
+    .state-pill {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem; font-weight: 600;
+      padding: 0.3rem 0.75rem; border-radius: 2px;
+      background: rgba(255,255,255,0.05); color: rgba(255,255,255,0.55);
+      border: 1px solid rgba(255,255,255,0.08); text-transform: uppercase; letter-spacing: 0.06em;
+      transition: background 0.2s, color 0.2s;
+    }
+    .state-pill:hover { background: rgba(217,119,6,0.12); color: var(--gold2); border-color: rgba(217,119,6,0.25); }
+
+    /* ─── FOUNDERS — editorial ─── */
+    .founders-section { background: var(--off); padding: 7rem 3rem; }
+    .founders-inner { max-width: 1300px; margin: 0 auto; }
+    .founders-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-top: 4rem; background: var(--border); }
+    .founder-card {
+      background: var(--white);
+      padding: 3rem 2.5rem;
+      position: relative; overflow: hidden;
+      transition: background 0.3s;
+    }
+    .founder-card:hover { background: var(--navy); }
+    .founder-card:hover .fc-name { color: white; }
+    .founder-card:hover .fc-role { color: var(--gold); }
+    .founder-card:hover .fc-bio { color: rgba(255,255,255,0.5); }
+    .founder-card:hover .fc-credit { color: rgba(255,255,255,0.25); border-top-color: rgba(255,255,255,0.08); }
+    .fc-initial {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 5rem; line-height: 1; letter-spacing: 0.02em;
+      color: var(--navy); opacity: 0.07;
+      position: absolute; bottom: 1.5rem; right: 1.75rem;
+      transition: opacity 0.3s;
+    }
+    .founder-card:hover .fc-initial { opacity: 0.05; color: white; }
+    .fc-index {
+      font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; font-weight: 700;
+      color: var(--blue2); text-transform: uppercase; letter-spacing: 0.14em; margin-bottom: 1.75rem;
+    }
+    .fc-name { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; color: var(--navy); letter-spacing: 0.02em; line-height: 0.95; margin-bottom: 0.5rem; transition: color 0.3s; }
+    .fc-role { font-size: 0.75rem; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 1.25rem; transition: color 0.3s; }
+    .fc-bio { font-size: 0.875rem; color: var(--muted); line-height: 1.7; margin-bottom: 1.5rem; transition: color 0.3s; }
+    .fc-credit {
+      padding-top: 1.25rem; border-top: 1px solid var(--border);
+      font-family: 'JetBrains Mono', monospace; font-size: 0.62rem;
+      color: var(--subtle, #CBD5E1); text-transform: uppercase; letter-spacing: 0.1em;
+      transition: color 0.3s, border-top-color 0.3s;
+    }
+
+    /* ─── CTA ─── */
+    .cta-section {
+      background: var(--gold);
+      padding: 7rem 3rem;
+      position: relative; overflow: hidden;
+    }
+    .cta-section::before {
+      content: 'TKO';
+      position: absolute;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 28vw; line-height: 1;
+      color: rgba(0,0,0,0.05);
+      right: -2rem; bottom: -2rem;
+      pointer-events: none; user-select: none;
+    }
+    .cta-inner { max-width: 1300px; margin: 0 auto; display: flex; align-items: flex-end; justify-content: space-between; gap: 3rem; flex-wrap: wrap; }
+    .cta-left {}
+    .cta-left h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(3rem, 6vw, 6rem);
+      line-height: 0.9; letter-spacing: 0.01em;
+      color: var(--navy); margin-bottom: 1rem;
+    }
+    .cta-left p { color: rgba(0,0,0,0.55); font-size: 1rem; line-height: 1.75; max-width: 500px; }
+    .cta-right { display: flex; flex-direction: column; gap: 1rem; min-width: 220px; }
+    .btn-navy {
+      display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+      background: var(--navy); color: white;
+      padding: 1rem 2.25rem; border-radius: 4px;
+      text-decoration: none; font-weight: 800; font-size: 0.9rem;
+      text-transform: uppercase; letter-spacing: 0.06em;
+      border: none; cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+      text-align: center;
+    }
+    .btn-navy:hover { background: #1E293B; transform: translateY(-2px); }
+    .btn-navy-outline {
+      display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+      background: transparent; color: var(--navy);
+      padding: 1rem 2.25rem; border-radius: 4px;
+      text-decoration: none; font-weight: 700; font-size: 0.9rem;
+      text-transform: uppercase; letter-spacing: 0.06em;
+      border: 2px solid rgba(0,0,0,0.25);
+      transition: border-color 0.2s, background 0.2s;
+      text-align: center;
+    }
+    .btn-navy-outline:hover { border-color: var(--navy); background: rgba(0,0,0,0.06); }
+
+    /* ─── MODAL ─── */
+    .modal-overlay {
+      position: fixed; inset: 0;
+      background: rgba(11,18,32,0.85); backdrop-filter: blur(8px);
+      z-index: 9999; display: none; align-items: center; justify-content: center; padding: 1rem;
+    }
+    .modal-overlay.open { display: flex; }
+    .modal {
+      background: white; border-radius: 8px; padding: 2.5rem;
+      width: 100%; max-width: 500px; position: relative;
+      box-shadow: 0 32px 80px rgba(0,0,0,0.4);
+      animation: modal-in 0.22s cubic-bezier(0.34,1.56,0.64,1);
+    }
+    @keyframes modal-in { from{opacity:0;transform:scale(0.94) translateY(12px)} to{opacity:1;transform:scale(1) translateY(0)} }
+    .modal-close {
+      position: absolute; top: 1.25rem; right: 1.25rem;
+      width: 30px; height: 30px; border-radius: 50%;
+      background: var(--off); border: none; cursor: pointer;
+      font-size: 1rem; color: var(--muted);
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s;
+    }
+    .modal-close:hover { background: var(--border); }
+    .modal-eyebrow { font-family: 'JetBrains Mono', monospace; font-size: 0.62rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.14em; color: var(--blue2); margin-bottom: 0.75rem; }
+    .modal h3 { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; color: var(--navy); margin-bottom: 0.5rem; letter-spacing: 0.02em; }
+    .modal p { color: var(--muted); font-size: 0.875rem; margin-bottom: 1.75rem; line-height: 1.65; }
+    .form-group { margin-bottom: 1rem; }
+    .form-group label { display: block; font-size: 0.78rem; font-weight: 700; color: var(--navy); margin-bottom: 0.4rem; text-transform: uppercase; letter-spacing: 0.05em; }
+    .form-group input, .form-group select, .form-group textarea {
+      width: 100%; padding: 0.75rem 1rem; border-radius: 4px;
+      border: 1.5px solid var(--border); font-family: 'Inter', sans-serif;
+      font-size: 0.9rem; color: var(--navy); background: white;
+      outline: none; transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+      border-color: var(--blue2); box-shadow: 0 0 0 3px rgba(37,99,235,0.08);
+    }
+    .form-group textarea { resize: vertical; min-height: 75px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .form-submit {
+      width: 100%; padding: 0.9rem; border-radius: 4px;
+      background: var(--navy); color: white;
+      border: none; font-family: 'Inter', sans-serif;
+      font-size: 0.9rem; font-weight: 800; cursor: pointer;
+      text-transform: uppercase; letter-spacing: 0.06em;
+      transition: background 0.2s, transform 0.15s; margin-top: 0.25rem;
+    }
+    .form-submit:hover { background: #1E293B; transform: translateY(-1px); }
+    .form-disclaimer { font-size: 0.7rem; color: var(--muted); text-align: center; margin-top: 0.875rem; }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--navy2);
+      padding: 4rem 3rem 2.5rem;
+    }
+    .footer-inner { max-width: 1300px; margin: 0 auto; }
+    .footer-top {
+      display: flex; justify-content: space-between; align-items: flex-start;
+      padding-bottom: 3rem; border-bottom: 1px solid rgba(255,255,255,0.07);
+      gap: 3rem; flex-wrap: wrap;
+    }
+    .footer-brand-mark {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 3rem; letter-spacing: 0.04em;
+      line-height: 1; color: white;
+    }
+    .footer-brand-mark .gold { color: var(--gold); }
+    .footer-tagline { color: rgba(255,255,255,0.3); font-size: 0.8rem; margin-top: 0.5rem; max-width: 280px; line-height: 1.6; }
+    .footer-links { display: flex; gap: 4rem; flex-wrap: wrap; }
+    .fl-group h5 { font-family: 'JetBrains Mono', monospace; font-size: 0.62rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.14em; color: rgba(255,255,255,0.3); margin-bottom: 1rem; }
+    .fl-group ul { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+    .fl-group ul a { color: rgba(255,255,255,0.5); text-decoration: none; font-size: 0.85rem; transition: color 0.2s; }
+    .fl-group ul a:hover { color: white; }
+    .footer-bottom {
+      padding-top: 2rem;
+      display: flex; justify-content: space-between; align-items: flex-start;
+      gap: 1.5rem; flex-wrap: wrap;
+    }
+    .footer-copy { color: rgba(255,255,255,0.25); font-size: 0.75rem; }
+    .footer-disclaimer { color: rgba(255,255,255,0.2); font-size: 0.7rem; line-height: 1.55; max-width: 700px; }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 1000px) {
+      .prod-row, .prod-row.flip { grid-template-columns: 1fr; direction: ltr; }
+      .prod-visual { min-height: 300px; }
+      .reports-split { grid-template-columns: 1fr; }
+      .comp-grid { grid-template-columns: 1fr; }
+      .founders-grid { grid-template-columns: 1fr; gap: 2px; }
+      .stat-ribbon-inner { flex-wrap: wrap; padding: 0 1.5rem; }
+      .sr-item { flex: 1 1 45%; border-right: none; border-bottom: 1px solid rgba(255,255,255,0.06); padding: 1.25rem 1rem; }
+      .sr-item:last-child { border-bottom: none; }
+      .process-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .process-divider { display: none; }
+      .proc-step { padding: 0; }
+      .cta-inner { flex-direction: column; align-items: flex-start; }
+      .footer-top { flex-direction: column; }
+    }
+    @media (max-width: 768px) {
+      nav { padding: 0 1.25rem; }
+      .nav-links { display: none; }
+      .section { padding: 5rem 1.5rem; }
+      .hero-inner { grid-template-columns: 1fr; }
+      .hero-left { padding: 6rem 1.5rem 4rem; }
+      .prod-copy { padding: 3rem 1.5rem; }
+      .rs-side { padding: 3rem 1.5rem; }
+      .comp-section { padding: 5rem 1.5rem; }
+      .cta-section { padding: 5rem 1.5rem; }
+      footer { padding: 3rem 1.5rem 2rem; }
+      .pullquote-section { padding: 4rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="demoModal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div class="modal-eyebrow">Request a Demo</div>
+    <h3>Let's Talk.</h3>
+    <p>Tell us about your practice. We'll reach out within 24 hours to schedule a live walkthrough on a real contract.</p>
+    <form id="demoForm" onsubmit="handleSubmit(event)">
+      <div class="form-row">
+        <div class="form-group">
+          <label>First Name</label>
+          <input type="text" id="firstName" placeholder="Marcus" required/>
+        </div>
+        <div class="form-group">
+          <label>Last Name</label>
+          <input type="text" id="lastName" placeholder="Williams" required/>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Work Email</label>
+        <input type="email" id="email" placeholder="marcus@agency.com" required/>
+      </div>
+      <div class="form-group">
+        <label>Agency / Organization</label>
+        <input type="text" id="agency" placeholder="Agency name" required/>
+      </div>
+      <div class="form-group">
+        <label>Your Role</label>
+        <select id="role" required>
+          <option value="">Select…</option>
+          <option>NIL Agent / Advisor</option>
+          <option>NFL / NBA Agent</option>
+          <option>Sports Attorney</option>
+          <option>Agency Principal / Owner</option>
+          <option>University Athletic Department</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>What are you solving? (optional)</label>
+        <textarea id="message" placeholder="e.g., We review 20+ NIL contracts/month and need faster compliance checks…"></textarea>
+      </div>
+      <button type="submit" class="form-submit">Request Demo →</button>
+      <p class="form-disclaimer">No spam. No pressure. Just a real conversation.</p>
+    </form>
+    <div id="formSuccess" style="display:none; text-align:center; padding:1rem 0;">
+      <div style="font-size:2.5rem; margin-bottom:0.75rem;">✅</div>
+      <h4 style="font-family:'Bebas Neue',sans-serif; font-size:1.6rem; color:var(--navy); margin-bottom:0.5rem; letter-spacing:0.02em;">Request Received</h4>
+      <p style="color:var(--muted); font-size:0.875rem;">We'll be in touch within 24 hours.</p>
+    </div>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="nav-logo"><span class="tko">TKO</span><span class="sg">Solutions Group</span></a>
+    <ul class="nav-links">
+      <li><a href="#tools">Tools</a></li>
+      <li><a href="#process">How It Works</a></li>
+      <li><a href="#reports">Reports</a></li>
+      <li><a href="#compliance">Compliance</a></li>
+      <li><a href="#team">Team</a></li>
+      <li><a href="#" class="nav-btn" onclick="openModal(); return false;">Request Demo</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-left">
+      <div class="hero-eyebrow">
+        <div class="hero-eyebrow-line"></div>
+        <span class="hero-eyebrow-text">Sports Contract Intelligence · Est. 2025</span>
+      </div>
+      <h1>
+        Know What The<br>
+        <span class="gold">Contract</span><br>
+        <span class="outline">Actually Says.</span>
+      </h1>
+      <p class="hero-sub">
+        <strong>TKO Solutions Group, LLC</strong> gives sports agents instant NIL and NFL contract analysis — built-in NCAA compliance checks, live market benchmarking, and two professional reports generated in under 60 seconds.
+      </p>
+      <div class="hero-actions">
+        <button class="btn-gold" onclick="openModal()">Request a Demo</button>
+        <a href="#tools" class="btn-outline">See the Platform →</a>
+      </div>
+    </div>
+
+    <!-- redline contract card -->
+    <div class="hero-contract">
+      <div class="contract-doc">
+        <div class="contract-header">
+          <span class="ch-title">NIL Contract · Analysis</span>
+          <div class="ch-status"><div class="ch-dot"></div>Processing</div>
+        </div>
+        <div class="contract-body">
+          <div class="cl"><span class="cl-num">08</span><span class="cl-code">ATHLETE: Marcus Webb · WR · University of Florida</span></div>
+          <div class="cl"><span class="cl-num">09</span><span class="cl-code">BRAND: <strong>Gatorade LLC</strong> · Consumer Beverages</span></div>
+          <div class="cl"><span class="cl-num">10</span><span class="cl-code">TERM: 12 months · $2,800/month base</span></div>
+          <div class="cl"><span class="cl-num">11</span><span class="cl-code cl-warn">Exclusivity clause: all sports beverages ⚠</span></div>
+          <div class="cl"><span class="cl-num">12</span><span class="cl-code">Deliverables: 4 posts/mo · 2 appearances/qtr</span></div>
+          <div class="cl"><span class="cl-num">13</span><span class="cl-code cl-red">§4.2 — Bonus: $5,000 upon bowl appearance</span></div>
+          <div class="cl"><span class="cl-num">14</span><span class="cl-code cl-ins">↳ FLAG: performance clause · NCAA §12.2 conflict</span></div>
+          <div class="cl"><span class="cl-num">15</span><span class="cl-code">Agent fee: 4.5% of total compensation</span></div>
+          <div class="cl"><span class="cl-num">16</span><span class="cl-code cl-warn">↳ Above 4% threshold — review recommended</span></div>
+          <div class="cl"><span class="cl-num">17</span><span class="cl-code">State: Florida · SB 646 — disclosure req.</span></div>
+          <div class="cl"><span class="cl-num">18</span><span class="cl-code cl-ins">7-day written notice to school required</span></div>
+          <div class="cl"><span class="cl-num">19</span><span class="cl-code cl-ins">NIL Go reporting required · deal exceeds $600</span></div>
+          <div class="cl"><span class="cl-num">20</span><span class="cl-code">NCAA prohibited industries: CLEARED</span></div>
+          <div class="cl"><span class="cl-num">21</span><span class="cl-code">School trademark language: NOT PRESENT ✓</span></div>
+        </div>
+        <div class="contract-verdict">
+          <div>
+            <div class="cv-left">Market Position · WR · NCAA D-I</div>
+            <div class="cv-val">+22% Above Market</div>
+            <div class="cv-sub">Benchmark range: $1,800–$3,200/mo · Offer: $2,800/mo</div>
+          </div>
+          <div class="cv-badge">2 FLAGS<br>DETECTED</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-track" id="tickerTrack">
+    <span class="ticker-item"><span class="ticker-dot"></span> NCAA Bylaw 12/22 · Current as of June 2026</span>
+    <span class="ticker-item"><span class="ticker-dot"></span> House Settlement Finalized · $20.5M/yr Revenue Cap</span>
+    <span class="ticker-item"><span class="ticker-dot"></span> NIL Go Reporting Required · Deals $600+</span>
+    <span class="ticker-item"><span class="ticker-dot"></span> April 2026 Executive Order · FTC Enforcement Active</span>
+    <span class="ticker-item"><span class="ticker-dot"></span> 10 State Laws Covered · CA · TX · FL · GA · OH · AL · MI · PA · NC · LA</span>
+    <span class="ticker-item"><span class="ticker-dot"></span> Performance Clause Detection · Auto-Flagged</span>
+    <span class="ticker-item"><span class="ticker-dot"></span> Two Reports Per Analysis · Professional + Athlete Summary</span>
+    <span class="ticker-item"><span class="ticker-dot"></span> Market Benchmarks · Live Data · 24-Hour Refresh</span>
+    <!-- duplicate for seamless loop -->
+    <span class="ticker-item"><span class="ticker-dot"></span> NCAA Bylaw 12/22 · Current as of June 2026</span>
+    <span class="ticker-item"><span class="ticker-dot"></span> House Settlement Finalized · $20.5M/yr Revenue Cap</span>
+    <span class="ticker-item"><span class="ticker-dot"></span> NIL Go Reporting Required · Deals $600+</span>
+    <span class="ticker-item"><span class="ticker-dot"></span> April 2026 Executive Order · FTC Enforcement Active</span>
+    <span class="ticker-item"><span class="ticker-dot"></span> 10 State Laws Covered · CA · TX · FL · GA · OH · AL · MI · PA · NC · LA</span>
+    <span class="ticker-item"><span class="ticker-dot"></span> Performance Clause Detection · Auto-Flagged</span>
+    <span class="ticker-item"><span class="ticker-dot"></span> Two Reports Per Analysis · Professional + Athlete Summary</span>
+    <span class="ticker-item"><span class="ticker-dot"></span> Market Benchmarks · Live Data · 24-Hour Refresh</span>
+  </div>
+</div>
+
+<!-- STAT RIBBON -->
+<div class="stat-ribbon">
+  <div class="stat-ribbon-inner">
+    <div class="sr-item">
+      <div class="sr-num">2<span class="u">×</span></div>
+      <div class="sr-label">Report formats per analysis — Professional & Athlete Summary</div>
+    </div>
+    <div class="sr-item">
+      <div class="sr-num">10</div>
+      <div class="sr-label">State NIL laws — CA · TX · FL · GA · OH · AL · MI · PA · NC · LA</div>
+    </div>
+    <div class="sr-item">
+      <div class="sr-num">&lt;60<span class="u">s</span></div>
+      <div class="sr-label">Seconds to complete a full compliance analysis</div>
+    </div>
+    <div class="sr-item">
+      <div class="sr-num">100<span class="u">%</span></div>
+      <div class="sr-label">NCAA rules current — June 2026, House Settlement included</div>
+    </div>
+  </div>
+</div>
+
+<!-- TOOLS -->
+<div id="tools">
+  <!-- NIL Analyzer -->
+  <div class="prod-row">
+    <div class="prod-copy on-navy">
+      <div class="prod-number">01</div>
+      <span class="prod-tag pt-gold">Flagship Tool</span>
+      <h3>NIL Contract<br>Analyzer</h3>
+      <p class="prod-desc">Upload any NIL contract — brand deals, collective agreements, multimedia rights — and get a full compliance audit with market benchmarking in seconds. Not a summary. A real analysis.</p>
+      <div class="feature-list">
+        <div class="fi"><span class="fi-icon">→</span> NCAA Bylaw 12/22 compliance check with current June 2026 rules</div>
+        <div class="fi"><span class="fi-icon">→</span> House Settlement & NIL Go reporting requirements flagged automatically</div>
+        <div class="fi"><span class="fi-icon">→</span> State law cross-reference — 10 states with specific rules and timelines</div>
+        <div class="fi"><span class="fi-icon">→</span> Live market rate comparison with On3 NIL Valuation anchor</div>
+        <div class="fi"><span class="fi-icon">→</span> Performance clauses, prohibited industries, agent fee thresholds — all flagged</div>
+        <div class="fi"><span class="fi-icon">→</span> Two PDF reports generated, ready to send — one click</div>
+      </div>
+    </div>
+    <div class="prod-visual bg-blue">
+      <div class="pv-center">
+        <div class="nil-panel">
+          <div class="np-bar">
+            <span class="np-title">Contract Analysis</span>
+            <div class="np-live"><div class="np-dot"></div>Live</div>
+          </div>
+          <div class="np-body">
+            <div class="np-line"><span class="np-check">✓</span><span class="np-text">NCAA Bylaw 12/22 — <strong>No violations</strong></span></div>
+            <div class="np-line"><span class="np-check">✓</span><span class="np-text">House Settlement — <strong>NIL Go req. ≥$600</strong></span></div>
+            <div class="np-line"><span class="np-warn">⚠</span><span class="np-text">Florida: <strong>7-day prior notice</strong> required</span></div>
+            <div class="np-line"><span class="np-flag">✗</span><span class="np-text">Performance bonus — <strong>NCAA §12.2 conflict</strong></span></div>
+            <div class="np-line"><span class="np-check">✓</span><span class="np-text">Industry check — <strong>Cleared</strong></span></div>
+            <div class="np-line"><span class="np-warn">⚠</span><span class="np-text">Agent fee 4.5% — <strong>Review recommended</strong></span></div>
+            <hr class="np-divider"/>
+            <div class="np-line"><span class="np-check">✓</span><span class="np-text">Market (WR, NCAA DI): <strong>$1,800–$4,200/mo</strong></span></div>
+            <div class="np-result">
+              <div>
+                <div class="npr-label">Contract Value</div>
+                <div class="npr-val">+18% Market</div>
+              </div>
+              <div style="font-size:0.62rem; color:rgba(255,255,255,0.35); font-family:'JetBrains Mono',monospace; text-align:right;">2 reports<br>generating…</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- NFL Analyzer -->
+  <div class="prod-row flip">
+    <div class="prod-copy on-white">
+      <div class="prod-number" style="color:rgba(0,0,0,0.04);">02</div>
+      <span class="prod-tag pt-blue" style="background:rgba(29,78,216,0.08); color:var(--blue); border-color:rgba(29,78,216,0.2);">Pro Tool</span>
+      <h3>NFL Contract<br>Analyzer</h3>
+      <p class="prod-desc">Break down NFL player contracts with automated analysis of salary structure, guaranteed money, incentive clauses, and market positioning against comparable players at the same position.</p>
+      <div class="feature-list">
+        <div class="fi"><span class="fi-icon">→</span> Salary, signing bonus, and guaranteed money breakdown</div>
+        <div class="fi"><span class="fi-icon">→</span> Incentive and escalator clause analysis — likely vs. unlikely</div>
+        <div class="fi"><span class="fi-icon">→</span> Dead cap and restructure risk flagging</div>
+        <div class="fi"><span class="fi-icon">→</span> Market rate comparison by position and experience level</div>
+        <div class="fi"><span class="fi-icon">→</span> Unfavorable clause flagging — voiding years, offset language</div>
+        <div class="fi"><span class="fi-icon">→</span> Professional report + plain-language player summary PDF</div>
+      </div>
+    </div>
+    <div class="prod-visual bg-slate">
+      <div class="pv-center">
+        <div class="nfl-panel">
+          <div class="nfl-header" style="background:rgba(255,255,255,0.04);">
+            <div class="nfl-header-title">Contract Breakdown</div>
+            <div class="nfl-header-sub">WR · 3 YR · $24.6M</div>
+          </div>
+          <div class="nfl-row"><span class="nfl-label">Total Value</span><span class="nfl-val">$24,600,000</span></div>
+          <div class="nfl-row"><span class="nfl-label">Fully Guaranteed</span><span class="nfl-val green">$14,200,000</span></div>
+          <div class="nfl-row"><span class="nfl-label">Signing Bonus</span><span class="nfl-val gold">$8,000,000</span></div>
+          <div class="nfl-row"><span class="nfl-label">Dead Cap (Yr 1)</span><span class="nfl-val">$10,667,000</span></div>
+          <div class="nfl-row"><span class="nfl-label">Market vs. Position</span><span class="nfl-val green">+11% Above</span></div>
+          <div class="nfl-row"><span class="nfl-label">Offset Language</span><span class="nfl-val red">⚠ Detected</span></div>
+          <div class="nfl-row"><span class="nfl-label">Incentives</span><span class="nfl-val gold">$2.1M Likely</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- HOW IT WORKS -->
+<section id="process" class="section process-section">
+  <div class="section-inner">
+    <div class="s-label">
+      <div class="s-label-line"></div>
+      <span class="s-label-text">The Process</span>
+    </div>
+    <h2 class="display">Three Steps.<br><span class="gold">Zero Guesswork.</span></h2>
+    <p class="lead">Designed to fit inside the workflow you already have. Upload, analyze, deliver — no training, no setup, no learning curve.</p>
+
+    <div class="process-grid">
+      <div class="proc-step">
+        <div class="proc-n">01</div>
+        <div class="proc-label">Upload</div>
+        <div class="proc-h">Drop In the Contract</div>
+        <p class="proc-p">Paste contract text or upload a PDF. Add athlete context — name, sport, school, state. Optionally include an On3 NIL Valuation for the most precise market benchmark available.</p>
+      </div>
+      <div class="process-divider"></div>
+      <div class="proc-step">
+        <div class="proc-n">02</div>
+        <div class="proc-label">Analyze</div>
+        <div class="proc-h">TKO Runs the Full Check</div>
+        <p class="proc-p">TKO's engine cross-references current NCAA rules, the House Settlement framework, and state-specific law — then benchmarks the deal against live market data for comparable athletes. No prompt engineering required.</p>
+      </div>
+      <div class="process-divider"></div>
+      <div class="proc-step">
+        <div class="proc-n">03</div>
+        <div class="proc-label">Deliver</div>
+        <div class="proc-h">Download Both Reports</div>
+        <p class="proc-p">One click generates two formatted PDFs — a detailed Professional Report for the agent or attorney, and a plain-language Athlete & Family Summary the athlete can actually understand. Both are branded and ready to send.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REPORTS SPLIT SCREEN -->
+<div id="reports">
+  <div class="reports-split">
+    <div class="rs-side rs-left">
+      <span class="rs-tag rst-blue">For Agents &amp; Attorneys</span>
+      <h3>Professional<br>Report</h3>
+      <p>Full compliance breakdown, clause-by-clause risk flags, market rate comparison table with deviation percentages, recommended negotiation leverage, and legal disclaimer language. Built for a working professional.</p>
+      <div class="rs-list">
+        <div class="rs-item">NCAA violation flags with specific bylaw citations</div>
+        <div class="rs-item">State law conflicts and required disclosure timelines</div>
+        <div class="rs-item">Market rate table — offer vs. benchmark vs. % deviation</div>
+        <div class="rs-item">Clause-by-clause risk assessment</div>
+        <div class="rs-item">Negotiation leverage points</div>
+      </div>
+      <div class="rs-big-num left">01</div>
+    </div>
+    <div class="rs-side rs-right">
+      <span class="rs-tag rst-gold">For the Athlete &amp; Family</span>
+      <h3>Athlete<br>Summary</h3>
+      <p>A clear, jargon-free breakdown of what the contract means in plain language. What to watch out for, what the numbers actually mean, and what questions to ask before signing. Builds trust in your representation.</p>
+      <div class="rs-list">
+        <div class="rs-item">Plain-language explanation of every major term</div>
+        <div class="rs-item">Flagged concerns explained without legal jargon</div>
+        <div class="rs-item">What this deal means for their career and brand</div>
+        <div class="rs-item">Key questions to ask before signing</div>
+        <div class="rs-item">Branded PDF — ready to hand to the athlete</div>
+      </div>
+      <div class="rs-big-num right">02</div>
+    </div>
+  </div>
+</div>
+
+<!-- PULLQUOTE -->
+<div class="pullquote-section">
+  <div class="pullquote-inner">
+    <span class="pq-mark">"</span>
+    <p class="pq-text">This isn't ChatGPT with a<br><span class="gold">sports contract pasted in.</span></p>
+    <p class="pq-sub">Generic tools give you generic answers. TKO is pre-loaded with current NCAA bylaws, House Settlement rules, state law, and live market data — so every analysis starts from the right foundation, not from scratch.</p>
+  </div>
+</div>
+
+<!-- COMPLIANCE -->
+<section id="compliance" class="comp-section">
+  <div class="comp-inner">
+    <div class="s-label">
+      <div class="s-label-line gold"></div>
+      <span class="s-label-text gold">Compliance Engine</span>
+    </div>
+    <h2 class="display"><span class="white">Rules Change.</span><br><span class="gold">We Keep Up.</span></h2>
+    <p class="lead" style="color:rgba(255,255,255,0.45); margin-bottom:0;">Every analysis is built on a compliance reference verified through June 2026 — covering every layer that matters for agents working today.</p>
+
+    <div class="comp-grid">
+      <div class="comp-block">
+        <div class="cb-eyebrow">NCAA & CSC</div>
+        <div class="cb-title">House Settlement Framework</div>
+        <div class="cb-list">
+          <div class="cb-item"><span class="arrow">→</span>Full Bylaw 12/22 — permitted and prohibited activities</div>
+          <div class="cb-item"><span class="arrow">→</span>House Settlement (finalized June 6, 2025) — $20.5M revenue sharing cap, NIL Go reporting</div>
+          <div class="cb-item"><span class="arrow">→</span>CSC valid business purpose standard — deals face substantive review, not rubber stamps</div>
+          <div class="cb-item"><span class="arrow">→</span>October 2025 amendments — enrollment/transfer inducement prohibitions strengthened</div>
+          <div class="cb-item"><span class="arrow">→</span>April 2026 Executive Order — fair market value standard, FTC enforcement begins Aug 1, 2026</div>
+          <div class="cb-item"><span class="arrow">→</span>Protect College Sports Act 2026 — monitored (in Senate committee, not yet law)</div>
+        </div>
+      </div>
+
+      <div class="comp-block">
+        <div class="cb-eyebrow">State Law</div>
+        <div class="cb-title">10-State Coverage</div>
+        <div class="cb-list">
+          <div class="cb-item"><span class="arrow">→</span>California: Coogan Law (minor trust), 7-day pre-signing notice</div>
+          <div class="cb-item"><span class="arrow">→</span>Florida: cannabis prohibition, school review rights</div>
+          <div class="cb-item"><span class="arrow">→</span>Texas: pre-signing disclosure, 30-day school review window</div>
+          <div class="cb-item"><span class="arrow">→</span>Ohio & North Carolina: sportsbook deals prohibited despite legal betting markets</div>
+          <div class="cb-item"><span class="arrow">→</span>Pennsylvania: Minor Contract Disabilities Act complexity for athletes under 18</div>
+          <div class="cb-item"><span class="arrow">→</span>Louisiana: Civil Code minor contract protections (unique to that state)</div>
+        </div>
+        <div class="state-pills">
+          <span class="state-pill">CA</span>
+          <span class="state-pill">TX</span>
+          <span class="state-pill">FL</span>
+          <span class="state-pill">GA</span>
+          <span class="state-pill">OH</span>
+          <span class="state-pill">AL</span>
+          <span class="state-pill">MI</span>
+          <span class="state-pill">PA</span>
+          <span class="state-pill">NC</span>
+          <span class="state-pill">LA</span>
+        </div>
+      </div>
+
+      <div class="comp-block">
+        <div class="cb-eyebrow">Auto-Detection</div>
+        <div class="cb-title">Red Flags Caught Before You Are</div>
+        <div class="cb-list">
+          <div class="cb-item"><span class="arrow">→</span>Prohibited industries: alcohol, tobacco, gambling, cannabis, firearms, adult content</div>
+          <div class="cb-item"><span class="arrow">→</span>Performance clauses tied to stats, wins, or bowl appearances</div>
+          <div class="cb-item"><span class="arrow">→</span>Enrollment or transfer inducement language</div>
+          <div class="cb-item"><span class="arrow">→</span>Missing NIL Go reporting language for $600+ deals</div>
+          <div class="cb-item"><span class="arrow">→</span>Agent fees above 4–5% threshold</div>
+          <div class="cb-item"><span class="arrow">→</span>School trademark usage without licensing language</div>
+        </div>
+      </div>
+
+      <div class="comp-block">
+        <div class="cb-eyebrow">Market Intelligence</div>
+        <div class="cb-title">Live Benchmarking — Not Guesses</div>
+        <div class="cb-list">
+          <div class="cb-item"><span class="arrow">→</span>Market data scraped from live NIL industry sources — refreshed every 24 hours</div>
+          <div class="cb-item"><span class="arrow">→</span>On3 NIL Valuation accepted as anchor — the tightest per-athlete benchmark available</div>
+          <div class="cb-item"><span class="arrow">→</span>Confidence-tiered: Live / Cached / Estimates — always labeled, never hidden</div>
+          <div class="cb-item"><span class="arrow">→</span>Comparison table in every report — offer vs. market vs. % deviation</div>
+          <div class="cb-item"><span class="arrow">→</span>Sport-specific benchmarks across 7 major collegiate sports</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOUNDERS -->
+<section id="team" class="founders-section">
+  <div class="founders-inner">
+    <div class="s-label">
+      <div class="s-label-line gold" style="background:var(--gold);"></div>
+      <span class="s-label-text gold" style="color:var(--gold);">The Team</span>
+    </div>
+    <h2 class="display">Built By People<br><span class="blue">In The Room.</span></h2>
+    <p class="lead">TKO was built by former professional athletes and a technology operator who understand the sports business from the inside — not software engineers guessing at the problem.</p>
+
+    <div class="founders-grid">
+      <div class="founder-card">
+        <div class="fc-initial">TG</div>
+        <div class="fc-index">Co-Founder · 01</div>
+        <div class="fc-name">Ted Ginn Jr.</div>
+        <div class="fc-role">Co-Founder</div>
+        <p class="fc-bio">11-year NFL career with the San Francisco 49ers, Carolina Panthers, New Orleans Saints, and others. Brings an elite player network and first-hand understanding of what athletes and agents actually need from contract analysis.</p>
+        <div class="fc-credit">Former NFL Wide Receiver</div>
+      </div>
+      <div class="founder-card">
+        <div class="fc-initial">JO</div>
+        <div class="fc-index">Co-Founder · 02</div>
+        <div class="fc-name">Jamario O'Neal</div>
+        <div class="fc-role">Co-Founder</div>
+        <p class="fc-bio">Professional basketball player who competed in the NBA and internationally. Deep understanding of athlete economics, contract structures, and what it means to navigate representation from the player's side of the table.</p>
+        <div class="fc-credit">Former NBA Forward</div>
+      </div>
+      <div class="founder-card">
+        <div class="fc-initial">KJ</div>
+        <div class="fc-index">Co-Founder · 03</div>
+        <div class="fc-name">Keith Johnson Jr.</div>
+        <div class="fc-role">Co-Founder &amp; Technology Lead</div>
+        <p class="fc-bio">Technology systems builder and operational specialist. Architected the TKO analysis engine, compliance layer, and market benchmarking system. Translates what agents need into tools that actually work under real workflow pressure.</p>
+        <div class="fc-credit">Technology &amp; Operations</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="cta-inner">
+    <div class="cta-left">
+      <h2>See It Work<br>On A Real<br>Contract.</h2>
+      <p>Request a live demo. We'll run an analysis on a contract from your actual practice — you'll see exactly what TKO produces before you commit to anything.</p>
+    </div>
+    <div class="cta-right">
+      <button class="btn-navy" onclick="openModal()">Request a Demo →</button>
+      <a href="mailto:hello@tkosg.com" class="btn-navy-outline">Email Us Directly</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand-mark"><span class="gold">TKO</span> Solutions Group, LLC</div>
+        <p class="footer-tagline">Sports contract intelligence for NIL agents, NFL agents, and sports attorneys.</p>
+      </div>
+      <div class="footer-links">
+        <div class="fl-group">
+          <h5>Platform</h5>
+          <ul>
+            <li><a href="#tools">NIL Contract Analyzer</a></li>
+            <li><a href="#tools">NFL Contract Analyzer</a></li>
+            <li><a href="#reports">Two-Report System</a></li>
+            <li><a href="#compliance">Compliance Engine</a></li>
+          </ul>
+        </div>
+        <div class="fl-group">
+          <h5>Company</h5>
+          <ul>
+            <li><a href="#team">Our Team</a></li>
+            <li><a href="#" onclick="openModal(); return false;">Request Demo</a></li>
+            <li><a href="mailto:hello@tkosg.com">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2026 TKO Solutions Group, LLC · tkosg.com</p>
+      <p class="footer-disclaimer">TKO Solutions Group, LLC provides technology-assisted contract analysis for informational and workflow purposes only. Nothing on this platform constitutes legal advice. All compliance analysis should be verified by a licensed sports attorney before contract execution. NCAA rules, state laws, and settlement terms are subject to change; verify current requirements independently.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  /* MODAL */
+  function openModal() {
+    document.getElementById('demoModal').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeModal() {
+    document.getElementById('demoModal').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  document.getElementById('demoModal').addEventListener('click', function(e) {
+    if (e.target === this) closeModal();
+  });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+  /* FORM */
+  function handleSubmit(e) {
+    e.preventDefault();
+    const btn = e.target.querySelector('.form-submit');
+    btn.textContent = 'Sending…'; btn.disabled = true;
+    const first = document.getElementById('firstName').value;
+    const last  = document.getElementById('lastName').value;
+    const email = document.getElementById('email').value;
+    const agency = document.getElementById('agency').value;
+    const role  = document.getElementById('role').value;
+    const msg   = document.getElementById('message').value;
+    const body  = encodeURIComponent(`Demo Request from TKO Website\n\nName: ${first} ${last}\nEmail: ${email}\nAgency: ${agency}\nRole: ${role}\nMessage: ${msg || '(none)'}`);
+    window.location.href = `mailto:hello@tkosg.com?subject=TKO Demo Request — ${encodeURIComponent(first + ' ' + last)}&body=${body}`;
+    setTimeout(() => {
+      document.getElementById('demoForm').style.display = 'none';
+      document.getElementById('formSuccess').style.display = 'block';
+    }, 800);
+  }
+
+  /* SCROLL REVEAL */
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.proc-step, .comp-block, .founder-card, .rs-side').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(20px)';
+    el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+    obs.observe(el);
+  });
+</script>
+</body>
+</html>
