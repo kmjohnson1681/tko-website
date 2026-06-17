@@ -575,7 +575,11 @@
     .modal-overlay {
       position: fixed; inset: 0;
       background: rgba(11,18,32,0.85); backdrop-filter: blur(8px);
-      z-index: 9999; display: none; align-items: center; justify-content: center; padding: 1rem;
+      z-index: 9999; display: none;
+      align-items: flex-start; justify-content: center;
+      padding: 1rem;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
     }
     .modal-overlay.open { display: flex; }
     .modal {
@@ -583,17 +587,21 @@
       width: 100%; max-width: 500px; position: relative;
       box-shadow: 0 32px 80px rgba(0,0,0,0.4);
       animation: modal-in 0.22s cubic-bezier(0.34,1.56,0.64,1);
+      margin: auto;
+      flex-shrink: 0;
+      align-self: flex-start;
     }
     @keyframes modal-in { from{opacity:0;transform:scale(0.94) translateY(12px)} to{opacity:1;transform:scale(1) translateY(0)} }
     .modal-close {
-      position: absolute; top: 1.25rem; right: 1.25rem;
-      width: 30px; height: 30px; border-radius: 50%;
+      position: absolute; top: 1rem; right: 1rem;
+      width: 44px; height: 44px; border-radius: 50%;
       background: var(--off); border: none; cursor: pointer;
-      font-size: 1rem; color: var(--muted);
+      font-size: 1.1rem; color: var(--muted);
       display: flex; align-items: center; justify-content: center;
       transition: background 0.2s;
+      -webkit-tap-highlight-color: transparent;
     }
-    .modal-close:hover { background: var(--border); }
+    .modal-close:hover { background: #E2E8F0; }
     .modal-eyebrow { font-family: 'JetBrains Mono', monospace; font-size: 0.62rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.14em; color: var(--blue2); margin-bottom: 0.75rem; }
     .modal h3 { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; color: var(--navy); margin-bottom: 0.5rem; letter-spacing: 0.02em; }
     .modal p { color: var(--muted); font-size: 0.875rem; margin-bottom: 1.75rem; line-height: 1.65; }
@@ -699,7 +707,9 @@
     }
     @media (max-width: 480px) {
       .hero-left { padding: 5rem 1.25rem 2.5rem; }
-      .modal { padding: 1.75rem 1.25rem; }
+      .modal { padding: 1.5rem 1.1rem; }
+      .modal h3 { font-size: 1.6rem; }
+      .modal-close { top: 0.75rem; right: 0.75rem; }
       .form-row { grid-template-columns: 1fr; gap: 0; }
       .hero-actions { flex-direction: column; align-items: flex-start; }
       .btn-gold, .btn-outline { width: 100%; justify-content: center; }
@@ -1210,11 +1220,9 @@
   /* MODAL */
   function openModal() {
     document.getElementById('demoModal').classList.add('open');
-    document.body.style.overflow = 'hidden';
   }
   function closeModal() {
     document.getElementById('demoModal').classList.remove('open');
-    document.body.style.overflow = '';
   }
   document.getElementById('demoModal').addEventListener('click', function(e) {
     if (e.target === this) closeModal();
