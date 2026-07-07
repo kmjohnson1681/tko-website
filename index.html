@@ -1177,7 +1177,7 @@
     </div>
     <div class="cta-right">
       <button class="btn-navy" onclick="openModal()">Request a Demo →</button>
-      <a href="mailto:hello@tkosg.com" class="btn-navy-outline">Email Us Directly</a>
+      <a href="mailto:info@tkosg.com" class="btn-navy-outline">Email Us Directly</a>
     </div>
   </div>
 </section>
@@ -1205,7 +1205,7 @@
           <ul>
             <li><a href="#team">Our Team</a></li>
             <li><a href="#" onclick="openModal(); return false;">Request Demo</a></li>
-            <li><a href="mailto:hello@tkosg.com">Contact</a></li>
+            <li><a href="mailto:info@tkosg.com">Contact</a></li>
           </ul>
         </div>
       </div>
@@ -1242,7 +1242,7 @@
     const role  = document.getElementById('role').value;
     const msg   = document.getElementById('message').value;
     const body  = encodeURIComponent(`Demo Request from TKO Website\n\nName: ${first} ${last}\nEmail: ${email}\nAgency: ${agency}\nRole: ${role}\nMessage: ${msg || '(none)'}`);
-    window.location.href = `mailto:hello@tkosg.com?subject=TKO Demo Request — ${encodeURIComponent(first + ' ' + last)}&body=${body}`;
+    window.location.href = `mailto:info@tkosg.com?subject=TKO Demo Request — ${encodeURIComponent(first + ' ' + last)}&body=${body}`;
     setTimeout(() => {
       document.getElementById('demoForm').style.display = 'none';
       document.getElementById('formSuccess').style.display = 'block';
